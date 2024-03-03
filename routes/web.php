@@ -23,3 +23,8 @@ Route::get('/', function () {
 //Auth
 
 Route::get('/register',[RegisterController::class,'index'])->name('register');
+Route::post('/register',[RegisterController::class,'prop'])->name('registerpr');
+Route::get('/registercl',[RegisterController::class,'cli'])->name('registercl');
+Route::post('/registercl',[RegisterController::class,'client'])->name('registercli');
+Route::get('/login',[RegisterController::class,'login'])->name('login');
+Route::get('/choose',[RegisterController::class,'choose'])->name('choose');

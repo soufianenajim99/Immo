@@ -15,7 +15,7 @@
                 <p class="mt-2 text-gray-500">Sign Up below to create your account</p>
             </div>
             <div class="mt-5">
-                <form action="{{route('registerpr')}}" method="POST" enctype="multipart/form-data" >
+                <form action="{{route('registercli')}}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="relative mt-6">
                         <div class="flex-1 items-center max-w-screen-sm mx-auto mb-3 space-y-4 sm:flex sm:space-y-0">

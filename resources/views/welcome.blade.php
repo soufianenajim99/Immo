@@ -44,7 +44,7 @@
               <div>
                 <h1 class="text-5xl font-bold">ImmoPlus-Trouvez Votre Maison de Rêve Avec Nous</h1>
                 <p class="py-6">Bienvenue sur ImmoPlus, votre partenaire de confiance dans la recherche de la maison parfaite. Que vous cherchiez à acheter, vendre ou louer, notre agence immobilière dévouée est là pour vous accompagner à chaque étape du processus.</p>
-                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-primary"><a href="{{route('choose')}}">Get Started</a></button>
               </div>
               
             </div>
