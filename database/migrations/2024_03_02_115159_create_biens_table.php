@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('adresse');
             $table->text('type');
             $table->longText('description');
+            $table->foreignId('client_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('prop_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

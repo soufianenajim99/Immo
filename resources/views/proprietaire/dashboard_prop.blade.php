@@ -10,22 +10,43 @@
     <div class="hidden absolute h-screen bg-slate-600 bg-opacity-60 blur-2xl z-10 w-screen" id="overlay">
     </div>
     <div id="popup-window" class="hidden fixed w-80 h-48  p-3 m-auto top-0 right-0 left-0 z-20 ">
-        <form class="max-w-md mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg" action="{{route('traject.store')}}" method="POST">
+        <form class="max-w-md mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg" action="{{route('bien.store')}}" method="POST">
             @csrf
-            <h2 class="text-2xl font-bold mb-6">Traject Form</h2>
+            <h2 class="text-2xl font-bold mb-6">Bien Form</h2>
             <div class="mb-4">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-              Depart:
+                <label class="block text-gray-700 font-bold mb-2" for="titre">
+             Titre
             </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Lieu de depart" name="depart">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="titre" type="text" placeholder="Titre de Bien" name="titre">
             </div>
             <div class="mb-4">
             
 
                 <label class="block text-gray-700 font-bold mb-2" for="text">
-              Arrivee:
+              Adresse:
                 </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Destination" name="arrivee">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Adresse" name="adresse">
+            </div>
+            <div class="mb-4">
+            
+
+                <label class="block text-gray-700 font-bold mb-2" for="text">
+              Description:
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Description" name="description">
+            </div>
+            <div class="mb-4">
+            
+
+                <label class="block text-gray-700 font-bold mb-2" for="text">
+              Type:
+                </label>
+                <select class="block w-sm text-sm font-medium transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-none" >
+                  <option value="vente">vente</option>
+                  <option value="location">la location</option>
+      
+              
+                </select>
             </div>
             
             <div class="mb-4">
@@ -45,7 +66,7 @@
         </form>
        
       </div>    
-      {{$trajects}}
+      {{$biens}}
     <div class="min-h-full">
       <!-- When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars -->
       <header class="bg-white shadow-sm lg:static lg:overflow-y-visible" x-state:on="Menu open" x-state:off="Menu closed" :class="{ 'fixed inset-0 z-40 overflow-y-auto': open }" x-data="Components.popover({ open: false, focus: false })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
@@ -99,7 +120,7 @@
                 <div>
                   <button type="button" class="plus-button flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2" id="user-menu-button" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
                     <span class="sr-only">Open user menu</span>
-                    <img class="h-8 w-8 rounded-full" src="{{ asset($trajects[0]->driver->user->image) }}" alt="">
+                    {{-- <img class="h-8 w-8 rounded-full" src="{{ asset($trajects[0]->driver->user->image) }}" alt=""> --}}
                   </button>
                 </div>
                 
@@ -115,7 +136,7 @@
                 
               </div>
   
-              <a href="#" class="ml-6 inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 button-target">New Traject</a>
+              <a href="#" class="ml-6 inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 button-target">New Bien</a>
             </div>
           </div>
         </div>
@@ -125,7 +146,7 @@
             
               <a href="#" aria-current="page" class="bg-gray-100 text-gray-900 block rounded-md py-2 px-3 text-base font-medium" x-state:on="Current" x-state:off="Default" x-state-description="Current: &quot;bg-gray-100 text-gray-900&quot;, Default: &quot;hover:bg-gray-50&quot;">Home</a>
             
-              <a href="{{route('historydr')}}" class="hover:bg-gray-50 block rounded-md py-2 px-3 text-base font-medium" x-state-description="undefined: &quot;bg-gray-100 text-gray-900&quot;, undefined: &quot;hover:bg-gray-50&quot;">historique de trajets</a>
+              <a href="" class="hover:bg-gray-50 block rounded-md py-2 px-3 text-base font-medium" x-state-description="undefined: &quot;bg-gray-100 text-gray-900&quot;, undefined: &quot;hover:bg-gray-50&quot;">historique de trajets</a>
             
               <a href="#" class="hover:bg-gray-50 block rounded-md py-2 px-3 text-base font-medium" x-state-description="undefined: &quot;bg-gray-100 text-gray-900&quot;, undefined: &quot;hover:bg-gray-50&quot;">Settings</a>
             
@@ -182,7 +203,7 @@
                     <span class="truncate">Home</span>
                   </a>
                 
-                  <a href="{{route('historydr')}}" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md" x-state-description="undefined: &quot;bg-gray-200 text-gray-900&quot;, undefined: &quot;text-gray-700 hover:bg-gray-50&quot;">
+                  <a href="" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md" x-state-description="undefined: &quot;bg-gray-200 text-gray-900&quot;, undefined: &quot;text-gray-700 hover:bg-gray-50&quot;">
                     <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" x-description="Heroicon name: outline/fire" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
     <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"></path>
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"></path>
@@ -218,18 +239,18 @@
                 <table class="w-full table-fixed">
                     <thead>
                         <tr class="bg-gray-100">
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Id_Traject</th>
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Depart</th>
-                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Arrivee</th>
+                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Titre de bien</th>
+                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">adresse</th>
+                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Type</th>
 
                         </tr>
                     </thead>
                     <tbody class="bg-white">
-                      @foreach ($trajects as $traject)
+                      @foreach ($biens as $bien)
                         <tr>
-                            <td class="py-4 px-6 border-b border-gray-200">{{$traject->id}}</td>
-                            <td class="py-4 px-6 border-b border-gray-200 truncate">{{$traject->depart}}</td>
-                            <td class="py-4 px-6 border-b border-gray-200">{{$traject->arrivee}}</td>
+                            <td class="py-4 px-6 border-b border-gray-200">{{$bien->titre}}</td>
+                            <td class="py-4 px-6 border-b border-gray-200 truncate">{{$bien->adresse}}</td>
+                            <td class="py-4 px-6 border-b border-gray-200">{{$bien->type}}</td>
                             
                         </tr>
                         @endforeach

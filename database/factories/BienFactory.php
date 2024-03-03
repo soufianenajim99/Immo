@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\client;
+use App\Models\prop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,14 @@ class BienFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'titre'=>$this->faker->word(),
+            'adresse'=>$this->faker->address(),
+            'type'=>$this->faker->randomElement(['allocation', 'vente']),
+            'description'=>$this->faker->sentence(),
+            'client_id'=>client::factory()->create(),
+            'prop_id'=>prop::factory()->create(),
+
+            
         ];
     }
 }
