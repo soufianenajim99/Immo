@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bien;
+use App\Models\prop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BienController extends Controller
 {
@@ -27,7 +30,16 @@ class BienController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'titre' => 'required|string|max:255',
+            'adresse' => 'required',
+            'description' => 'required',
+            'type' => 'required',
+        ]);
+        $prop = prop::where('user_id',Auth::id());
+        $validatedData=array_merge($validatedData,['prop_id'=>$prop->id,'client_id'=>null]);
+        bien::create($validatedData);
+        return redirect('/dashboard_pro');
     }
 
     /**
@@ -51,7 +63,20 @@ class BienController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'titre' => 'required|string|max:255',
+            'adresse' => 'required',
+            'description' => 'required',
+            'type' => 'required',
+        ]);
+
+        $bien = bien::findOrFail($id);
+        $bien->titre = strip_tags($request->input('titre'));
+        $bien->adresse = strip_tags($request->input('adresse'));
+        $bien->description = strip_tags($request->input('description'));
+        $bien->type = strip_tags($request->input('type'));
+        $bien->save();
+        return redirect('/dashboard_pro');
     }
 
     /**
@@ -59,6 +84,8 @@ class BienController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $bien = bien::findOrFail($id);
+        $bien->delete();
+        return redirect('/dashboard_pro');
     }
 }

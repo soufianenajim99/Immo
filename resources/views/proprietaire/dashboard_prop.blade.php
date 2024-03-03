@@ -54,10 +54,10 @@
                 class="hover:shadow-form rounded-md bg-[#000000] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                 Submit
             </button>
-                <button
+                <p
                 class="hover:shadow-form rounded-md bg-[#ff0b0b] py-3 px-8 text-center text-base font-semibold text-white outline-none close">
                 Close
-            </button>
+            </p>
             
             </div>
                
@@ -242,6 +242,7 @@
                             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Titre de bien</th>
                             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">adresse</th>
                             <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Type</th>
+                            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Actions</th>
 
                         </tr>
                     </thead>
@@ -251,6 +252,11 @@
                             <td class="py-4 px-6 border-b border-gray-200">{{$bien->titre}}</td>
                             <td class="py-4 px-6 border-b border-gray-200 truncate">{{$bien->adresse}}</td>
                             <td class="py-4 px-6 border-b border-gray-200">{{$bien->type}}</td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <button class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Edit</button>
+                              <button class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Delete</button>
+                          </td>
                             
                         </tr>
                         @endforeach
