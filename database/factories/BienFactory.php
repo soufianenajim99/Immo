@@ -21,6 +21,7 @@ class BienFactory extends Factory
         return [
             'titre'=>$this->faker->word(),
             'adresse'=>$this->faker->address(),
+            'picture'=>$this->faker->word(),
             'type'=>$this->faker->randomElement(['allocation', 'vente']),
             'description'=>$this->faker->sentence(),
             'client_id'=>client::factory()->create(),

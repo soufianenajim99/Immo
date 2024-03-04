@@ -16,4 +16,7 @@ class client extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+    public function bien(){
+        return $this->hasMany(bien::class);
+    }
 }

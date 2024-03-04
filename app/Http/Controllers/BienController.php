@@ -30,14 +30,22 @@ class BienController extends Controller
      */
     public function store(Request $request)
     {
+    
         $validatedData = $request->validate([
             'titre' => 'required|string|max:255',
             'adresse' => 'required',
             'description' => 'required',
             'type' => 'required',
+            'picture' => 'required',
         ]);
-        $prop = prop::where('user_id',Auth::id());
-        $validatedData=array_merge($validatedData,['prop_id'=>$prop->id,'client_id'=>null]);
+        $fileName = time() . '.' . $request->picture->extension();
+        $request->picture->move(public_path('images/biens'),$fileName);
+
+        
+        $prop = prop::where('user_id',Auth::id())->first();
+        
+        
+        $validatedData=array_merge($validatedData,['prop_id'=>$prop->id,'client_id'=>null,'picture' => $fileName]);
         bien::create($validatedData);
         return redirect('/dashboard_pro');
     }
@@ -55,7 +63,10 @@ class BienController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $bien= bien::findOrFail($id);
+        return view("proprietaire.editer_prop",[
+            'bien'=> $bien
+        ]);
     }
 
     /**
@@ -64,7 +75,7 @@ class BienController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            'titre' => 'required|string|max:255',
+            'titre' => 'required|string',
             'adresse' => 'required',
             'description' => 'required',
             'type' => 'required',

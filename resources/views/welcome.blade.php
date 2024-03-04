@@ -6,6 +6,7 @@
   @vite('resources/css/app.css')
 </head>
 <body class="bg-base-200">
+  
     <div class="container mx-auto relative">
         <div class="flex items-center justify-center">
             <nav class=" mt-28 w-5/6 fixed z-50">
@@ -20,18 +21,39 @@
                       <div class="dropdown dropdown-end">
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                           <div class="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            @if (Auth::check())
+                            <img alt="" src="/images/users/{{Auth::user()->picture}}" />    
+                            @else
+                            <img alt="" src="/images/download.png" />    
+                                
+                            @endif
                           </div>
                         </div>
-                        <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                       
                           {{-- <li>
                             <a class="justify-between">
                               Profile
                               <span class="badge">New</span>
                             </a>
                           </li> --}}
-                          <li><a>Register</a></li>
-                          <li><a>Login</a></li>
+                          <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                 @if (Auth::check())
+                 @if (Auth::user()->hasRole('prop'))
+                 <li><a href="{{route('dashprop')}}">Dashboard</a></li>
+                 <li><a href="{{route('logout')}}">Logout</a></li>
+                 @else
+                 <li><a href="{{route('myreserve')}}">My Reservations</a></li>
+                 <li><a href="{{route('logout')}}">Logout</a></li>
+                 @endif
+                     
+                 @else
+                 <li><a href="{{route('choose')}}">Register</a></li>
+                 <li><a href="{{route('login')}}">Login</a></li>
+                 @endif
+
+
+
+                       
                         </ul>
                       </div>
                     </div>
@@ -61,6 +83,8 @@
                 </div>
                 <div
                     class="grid max-w-4xl lg:max-w-6xl grid-cols-1 mx-auto mt-8 text-center gap-y-4 sm:gap-x-8 sm:grid-cols-2 lg:grid-cols-3 sm:mt-12 lg:mt-20 sm:text-left">
+                    @foreach ($biens as $bien)
+                        
                     <div class="relative">
                         <div class="absolute -inset-1">
                             <div
@@ -68,22 +92,15 @@
                             </div>
                         </div>
                         <div class="relative overflow-hidden bg-white shadow-md rounded-xl h-full">
-                            <div class="p-9"><svg class="w-12 h-12 mx-auto text-gray-400 sm:mx-0" viewBox="0 0 24 24"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11 8L20 8" stroke="#111827" stroke-width="2" stroke-linecap="round"></path>
-                                    <path d="M4 16L14 16" stroke="#111827" stroke-width="2" stroke-linecap="round"></path>
-                                    <ellipse cx="7" cy="8" rx="3" ry="3" transform="rotate(90 7 8)" stroke="#111827"
-                                        stroke-width="2" stroke-linecap="round"></ellipse>
-                                    <ellipse cx="17" cy="16" rx="3" ry="3" transform="rotate(90 17 16)" stroke="#111827"
-                                        stroke-width="2" stroke-linecap="round"></ellipse>
-                                </svg>
-                                <h3 class="mt-6 text-2xl font-bold text-gray-900 sm:mt-10">Realtime Collaboration</h3>
-                                <p class="mt-6 text-base text-gray-600">Collaborate in realtime with other editors in a
-                                    project. See what othe editors are doing and edit even a simple text together</p>
+                            <div class="p-9">
+                                <img src="/images/{{$bien->picture}}" alt="" srcset="">
+                                <h3 class="mt-6 text-2xl font-bold text-gray-900 sm:mt-10"><a href="/bien_page/{{$bien->id}}">{{$bien->titre}}</a></h3>
+                                <p class="mt-6 text-base text-gray-600">{{$bien->description}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="overflow-hidden bg-white shadow-md rounded-xl">
+                    @endforeach
+                    {{-- <div class="overflow-hidden bg-white shadow-md rounded-xl">
                         <div class="p-9"><svg class="w-12 h-12 mx-auto text-gray-400 sm:mx-0" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <rect x="13" y="14" width="2" height="2" rx="1" fill="#111827"></rect>
@@ -187,7 +204,7 @@
                             <p class="mt-6 text-base text-gray-600">Attach your own custom domain to your published
                                 projects or website on windframe</p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>

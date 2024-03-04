@@ -6,7 +6,181 @@
   @vite('resources/css/app.css')
 </head>
 <body class="h-full">  
-  
+
+
+  <div class="navbar bg-base-100">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </div>
+      </div>
+     
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1 mx-2 flex gap-2">
+      
+       
+        <li><label for="my-drawer" class="btn btn-primary drawer-button">Ajouter Un Bien</label></li>
+        <button class="btn btn-outline"><a href="/">Home</a></button> 
+      
+        <button class="btn btn-outline"><a href="{{route('logout')}}">Log-Out</a></button> 
+      </ul>
+    </div>
+    <div class="navbar-end">
+    
+    </div>
+  </div>
+
+
+
+
+  <div class="drawer drawer-end">
+    <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- Page content here -->
+     
+    </div> 
+    <div class="drawer-side">
+      <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+      <div class="menu p-4 w-80 min-h-full bg-base-200 text-base-content z-50">
+        <form class="max-w-md mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg" action="{{route('bien.store')}}" method="POST">
+          @csrf
+          <h2 class="text-2xl font-bold mb-6">Editer un Bien</h2>
+          <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="titre">
+           Titre
+          </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="titre" type="text" placeholder="Titre de Bien" name="titre">
+          </div>
+          <div class="mb-4">
+          
+
+              <label class="block text-gray-700 font-bold mb-2" for="text">
+            Adresse:
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Adresse" name="adresse">
+          </div>
+          <div class="mb-4">
+          
+
+              <label class="block text-gray-700 font-bold mb-2" for="text">
+            Description:
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Description" name="description">
+          </div>
+          <div class="mb-4">
+          
+
+              <label class="block text-gray-700 font-bold mb-2" for="text">
+            Type:
+              </label>
+              <select class="block w-sm text-sm font-medium transition duration-75 border border-gray-800 rounded-lg shadow-sm h-9 focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-none" >
+                <option value="vente">vente</option>
+                <option value="location">la location</option>
+    
+            
+              </select>
+          </div>
+          
+          <div class="mb-4">
+              <button type="submit"
+              class="hover:shadow-form rounded-md bg-[#000000] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+              Submit
+          </button>
+             
+          
+          </div>
+             
+          </div>
+         
+      </form>
+
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+  <div class="drawer">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      
+    </div> 
+    <div class="drawer-side">
+      <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+      <div class="menu p-4 w-80 min-h-full bg-base-200 text-base-content z-50">
+        <form class="max-w-md mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg" action="{{route('bien.store')}}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <h2 class="text-2xl font-bold mb-6">Ajouter un Bien</h2>
+          <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="titre">
+           Titre
+          </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="titre" type="text" placeholder="Titre de Bien" name="titre">
+          </div>
+          <div class="mb-4">
+          
+
+              <label class="block text-gray-700 font-bold mb-2" for="text">
+            Adresse:
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Adresse" name="adresse">
+          </div>
+          <div class="mb-4">
+          
+
+              <label class="block text-gray-700 font-bold mb-2" for="text">
+            Description:
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="text" type="text" placeholder="Description" name="description">
+          </div>
+          <div class="mb-4">
+          
+
+              <label class="block text-gray-700 font-bold mb-2" for="text">
+            Type:
+              </label>
+              <select class="select  w-full max-w-xs" name="type">
+                <option disabled selected>Type:</option>
+                
+                <option value="vente">vente</option>
+                <option value="location">la location</option>
+              </select>
+    
+            
+            
+          </div>
+          <div class="mb-4">
+          
+
+              <label class="block text-gray-700 font-bold mb-2" for="text">
+            Picture:
+              </label>
+              <input type="file" class="file-input file-input-bordered w-full max-w-xs" name="picture"/>
+
+            
+          </div>
+          
+          <div class="mb-4">
+              <button type="submit"
+              class="hover:shadow-form rounded-md bg-[#000000] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+              Submit
+          </button>
+             
+          
+          </div>
+             
+          </div>
+         
+      </form>
+
+      </div>
+     
+    </div>
+  </div>
     <div class="hidden absolute h-screen bg-slate-600 bg-opacity-60 blur-2xl z-10 w-screen" id="overlay">
     </div>
     <div id="popup-window" class="hidden fixed w-80 h-48  p-3 m-auto top-0 right-0 left-0 z-20 ">
@@ -66,7 +240,7 @@
         </form>
        
       </div>    
-      {{$biens}}
+     
     <div class="min-h-full">
       <!-- When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars -->
       <header class="bg-white shadow-sm lg:static lg:overflow-y-visible" x-state:on="Menu open" x-state:off="Menu closed" :class="{ 'fixed inset-0 z-40 overflow-y-auto': open }" x-data="Components.popover({ open: false, focus: false })" x-init="init()" @keydown.escape="onEscape" @close-popover-group.window="onClosePopoverGroup">
@@ -82,17 +256,7 @@
             </div>
             <div class="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
               <div class="flex items-center px-6 py-4 md:mx-auto md:max-w-3xl lg:mx-0 lg:max-w-none xl:px-0">
-                <div class="w-full">
-                  <label for="search" class="sr-only">Search</label>
-                  <div class="relative">
-                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <svg class="h-5 w-5 text-gray-400" x-description="Heroicon name: mini/magnifying-glass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"></path>
-  </svg>
-                    </div>
-                    <input id="search" name="search" class="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-rose-500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-rose-500 sm:text-sm" placeholder="Search" type="search">
-                  </div>
-                </div>
+                
               </div>
             </div>
             <div class="flex items-center md:absolute md:inset-y-0 md:right-0 lg:hidden">
@@ -113,30 +277,8 @@
             </div>
             <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
               
+  
              
-  
-              <!-- Profile dropdown -->
-              <div x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)" class="relative ml-5 flex-shrink-0">
-                <div>
-                  <button type="button" class="plus-button flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2" id="user-menu-button" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
-                    <span class="sr-only">Open user menu</span>
-                    {{-- <img class="h-8 w-8 rounded-full" src="{{ asset($trajects[0]->driver->user->image) }}" alt=""> --}}
-                  </button>
-                </div>
-                
-                  <div class=" absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none menuu" >
-                    
-                      <a href="#" class="block py-2 px-4 text-sm text-gray-700" >Your Profile</a>
-                    
-                      <a href="#" class="block py-2 px-4 text-sm text-gray-700">Settings</a>
-                    
-                      <a href="#" class="block py-2 px-4 text-sm text-gray-700" >Sign out</a>
-                    
-                  </div>
-                
-              </div>
-  
-              <a href="#" class="ml-6 inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 button-target">New Bien</a>
             </div>
           </div>
         </div>
@@ -193,44 +335,10 @@
       <div class="py-10">
         <div class="mx-auto max-w-3xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-8 lg:px-8">
           <div class="hidden lg:col-span-3 lg:block xl:col-span-2">
-            <nav aria-label="Sidebar" class="sticky top-4 divide-y divide-gray-300">
-              <div class="space-y-1 pb-8">
-                
-                  <a href="#" class="bg-gray-200 text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md" aria-current="page" x-state:on="Current" x-state:off="Default" x-state-description="Current: &quot;bg-gray-200 text-gray-900&quot;, Default: &quot;text-gray-700 hover:bg-gray-50&quot;">
-                    <svg class="text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" x-description="Heroicon name: outline/home" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
-  </svg>
-                    <span class="truncate">Home</span>
-                  </a>
-                
-                  <a href="" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md" x-state-description="undefined: &quot;bg-gray-200 text-gray-900&quot;, undefined: &quot;text-gray-700 hover:bg-gray-50&quot;">
-                    <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" x-description="Heroicon name: outline/fire" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"></path>
-    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"></path>
-  </svg>
-                    <span class="truncate">historique de trajets</span>
-                  </a>
-                
-                  <a href="#" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md" x-state-description="undefined: &quot;bg-gray-200 text-gray-900&quot;, undefined: &quot;text-gray-700 hover:bg-gray-50&quot;">
-                    <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" x-description="Heroicon name: outline/user-group" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
-  </svg>
-                    <span class="truncate">Settings</span>
-                  </a>
-                
-                  <a href="#" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md" x-state-description="undefined: &quot;bg-gray-200 text-gray-900&quot;, undefined: &quot;text-gray-700 hover:bg-gray-50&quot;">
-                    <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" x-description="Heroicon name: outline/arrow-trending-up" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"></path>
-  </svg>
-                    <span class="truncate">Select Target</span>
-                  </a>
-                
-              </div>
-            
-            </nav>
+         
           </div>
           
-          <main class="lg:col-span-9">
+          <main class="lg:col-span-12">
             {{-- <h1>{{Auth::user()->gettable()}}</h1>
             <h1>{{Auth::user()->id}}</h1>
             <h1>{{$isAdmin = \App\Models\Driver::where('user_id', Auth::user()->id)->exists()}}</h1> --}}
@@ -253,9 +361,18 @@
                             <td class="py-4 px-6 border-b border-gray-200 truncate">{{$bien->adresse}}</td>
                             <td class="py-4 px-6 border-b border-gray-200">{{$bien->type}}</td>
 
-                            <td class="px-6 py-4 whitespace-nowrap">
-                              <button class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Edit</button>
-                              <button class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Delete</button>
+                            <td class="inline-flex items-center rounded-md shadow-sm">
+                              <a href="{{ route('bien.edit',['bien'=>$bien['id']])}}"> <button type="submit" class="ml-2 px-4 py-2 font-medium text-white bg-green-600 rounded-md hover:bg-green-500 focus:outline-none focus:shadow-outline-red active:bg-green-600 transition duration-150 ease-in-out">Editer</button></a>
+
+
+
+<form action="{{route('bien.destroy', ['bien' => $bien['id']])}}" method="POST" class=" m-0 p-0 ">
+  @csrf
+  @method('DELETE')
+  <button type="submit" class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Delete</button>
+      </form>
+
+
                           </td>
                             
                         </tr>

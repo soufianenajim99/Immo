@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('titre');
             $table->text('adresse');
             $table->text('type');
+            $table->string('picture')->nullable();
             $table->longText('description');
             $table->foreignId('client_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('prop_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
