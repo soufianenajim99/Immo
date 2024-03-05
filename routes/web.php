@@ -4,6 +4,7 @@ use App\Http\Controllers\BienController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PropController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use App\Models\bien;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $biens = bien::all();
+    $biens = bien::latest();
+    if(request('search')){
+        $biens
+           ->where('titre','LIKE','%'.request('search').'%')
+           ->orWhere('description','LIKE','%'.request('search').'%');
+
+      }
     return view('welcome',[
-        'biens'=>$biens
+        'biens'=>$biens->get()
     ]);
 });
 
@@ -34,15 +41,18 @@ Route::post('/register',[RegisterController::class,'prop'])->name('registerpr');
 Route::get('/registercl',[RegisterController::class,'cli'])->name('registercl');
 Route::post('/registercl',[RegisterController::class,'client'])->name('registercli');
 Route::get('/login',[RegisterController::class,'login'])->name('login');
+Route::post('/login', [SessionController::class, 'store'])->name('login.store');
+
+
+
+
 Route::get('/choose',[RegisterController::class,'choose'])->name('choose');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/logout', [RegisterController::class,'logout'])->name('logout');
+    Route::get('/logout', [SessionController::class,'logout'])->name('logout');
 });
 
 
 //proprieatire
-
-
 
 Route::middleware(['auth', 'role:prop'])->group(function () {
     Route::get('dashboard_pro',[PropController::class,'index'])->name('dashprop');
@@ -55,6 +65,7 @@ Route::middleware(['auth', 'role:prop'])->group(function () {
 Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/reserve_page/{id}',[ClientController::class,'reserve'])->name('reserve');
     Route::get('/myreserve',[ClientController::class,'myreserve'])->name('myreserve');
+    Route::get('/annreserve/{id}',[ClientController::class,'annreserve'])->name('annreserve');
 });
 
 

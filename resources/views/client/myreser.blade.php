@@ -82,6 +82,9 @@
                                 <img src="/images/{{$bien->picture}}" alt="" srcset="">
                                 <h3 class="mt-6 text-2xl font-bold text-gray-900 sm:mt-10"><a href="/bien_page/{{$bien->id}}">{{$bien->titre}}</a></h3>
                                 <p class="mt-6 text-base text-gray-600">{{$bien->description}}</p>
+                                <a href="/annreserve/{{$bien['id']}}">
+                                  <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">Annuler ce Bien</button>
+                               </a>
                             </div>
                         </div>
                     </div>

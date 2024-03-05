@@ -30,4 +30,14 @@ class ClientController extends Controller
             'biens'=>$biens
         ]);
     }
+
+
+    public function annreserve(string $id){
+        $bien = bien::findOrFail($id);
+        $cli = client::where('user_id',Auth::id())->first();
+        $bien->client_id=null;
+        $bien->save();
+        return redirect('/myreserve');
+    }
+   
 }
